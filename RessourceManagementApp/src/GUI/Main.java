@@ -95,26 +95,18 @@ public class Main extends Application {
     @FXML
     private void openAdvancedSearch(){
         try{
-            replaceSceneContext("advancedSearch.fxml");
+            replaceSceneContext();
         } catch (Exception e) {
             System.out.println("Cannot change stage");
             e.printStackTrace();
         }
     }
     @FXML
-    private Parent replaceSceneContext(String fxml) throws Exception{
-        Parent page = FXMLLoader.load(Main.class.getResource("View/advancedSearch.fxml"));
-        Scene scene = window.getScene();
-
-        if(scene == null){
-            scene = new Scene(page, 700, 450);
-            scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
-        window.setScene(scene);
-        }else{
-            window.getScene().setRoot(page);
-        }
-        window.sizeToScene();
-        return page;
+    protected void replaceSceneContext() throws Exception{
+        Stage window = new Stage();
+        Parent root = FXMLLoader.load(Main.class.getResource("View/advancedSearch.fxml"));
+        window.setScene(new Scene(root));
+        window.show();
     }
 
     @FXML
@@ -233,7 +225,7 @@ public class Main extends Application {
 
     private void changeScene(String context){
         try{
-            replaceSceneContext(context);
+            replaceSceneContext();
         } catch (Exception e) {
             System.out.println("Cannot change stage");
             e.printStackTrace();
