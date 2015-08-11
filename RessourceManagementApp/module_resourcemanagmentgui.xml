@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_resourcemanagmentgui" default="compile.module.resourcemanagmentgui">
+  <dirname property="module.resourcemanagmentgui.basedir" file="${ant.file.module_resourcemanagmentgui}"/>
+  
+  <property name="module.jdk.home.resourcemanagmentgui" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.resourcemanagmentgui" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.resourcemanagmentgui" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.resourcemanagmentgui" value="-encoding windows-1252 -source 8 ${compiler.args}"/>
+  
+  <property name="resourcemanagmentgui.output.dir" value="${module.resourcemanagmentgui.basedir}/out/production/ResourceManagmentGUI"/>
+  <property name="resourcemanagmentgui.testoutput.dir" value="${module.resourcemanagmentgui.basedir}/out/test/ResourceManagmentGUI"/>
+  
+  <path id="resourcemanagmentgui.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="resourcemanagmentgui.module.production.classpath">
+    <path refid="${module.jdk.classpath.resourcemanagmentgui}"/>
+    <path refid="library.mysql-connector-java-5.0.classpath"/>
+  </path>
+  
+  <path id="resourcemanagmentgui.runtime.production.module.classpath">
+    <pathelement location="${resourcemanagmentgui.output.dir}"/>
+    <path refid="library.mysql-connector-java-5.0.classpath"/>
+  </path>
+  
+  <path id="resourcemanagmentgui.module.classpath">
+    <path refid="${module.jdk.classpath.resourcemanagmentgui}"/>
+    <pathelement location="${resourcemanagmentgui.output.dir}"/>
+    <path refid="library.mysql-connector-java-5.0.classpath"/>
+  </path>
+  
+  <path id="resourcemanagmentgui.runtime.module.classpath">
+    <pathelement location="${resourcemanagmentgui.testoutput.dir}"/>
+    <pathelement location="${resourcemanagmentgui.output.dir}"/>
+    <path refid="library.mysql-connector-java-5.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.resourcemanagmentgui">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.resourcemanagmentgui">
+    <patternset refid="excluded.from.module.resourcemanagmentgui"/>
+  </patternset>
+  
+  <path id="resourcemanagmentgui.module.sourcepath">
+    <dirset dir="${module.resourcemanagmentgui.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.resourcemanagmentgui" depends="compile.module.resourcemanagmentgui.production,compile.module.resourcemanagmentgui.tests" description="Compile module ResourceManagmentGUI"/>
+  
+  <target name="compile.module.resourcemanagmentgui.production" depends="register.custom.compilers" description="Compile module ResourceManagmentGUI; production classes">
+    <mkdir dir="${resourcemanagmentgui.output.dir}"/>
+    <javac2 destdir="${resourcemanagmentgui.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.resourcemanagmentgui}/javac">
+      <compilerarg line="${compiler.args.resourcemanagmentgui}"/>
+      <bootclasspath refid="resourcemanagmentgui.module.bootclasspath"/>
+      <classpath refid="resourcemanagmentgui.module.production.classpath"/>
+      <src refid="resourcemanagmentgui.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.resourcemanagmentgui"/>
+    </javac2>
+    
+    <copy todir="${resourcemanagmentgui.output.dir}">
+      <fileset dir="${module.resourcemanagmentgui.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.resourcemanagmentgui.tests" depends="register.custom.compilers,compile.module.resourcemanagmentgui.production" description="compile module ResourceManagmentGUI; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.resourcemanagmentgui" description="cleanup module">
+    <delete dir="${resourcemanagmentgui.output.dir}"/>
+    <delete dir="${resourcemanagmentgui.testoutput.dir}"/>
+  </target>
+</project>

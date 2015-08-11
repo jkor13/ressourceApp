@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.insertDataController">
+    <stylesheets>
+        <URL value="@../Resources/style.css" />
+    </stylesheets>
+
+   <children>
+      <TabPane layoutX="20.0" layoutY="19.0" prefHeight="463.0" prefWidth="578.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+            <Tab text="Product">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="560.0">
+                     <children>
+                        <GridPane prefHeight="330.0" prefWidth="500.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="250.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="250.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                               <Label text="Product ID" />
+                              <Label text="Category" GridPane.rowIndex="1" />
+                              <Label text="Brandname" GridPane.rowIndex="2" />
+                              <Label text="Net weight (g)" GridPane.rowIndex="3" />
+                              <Label text="Gross weight (g)" GridPane.rowIndex="4" />
+                              <Label text="Dimensions (mm)" GridPane.rowIndex="5" />
+                              <Label text="Security remarks" GridPane.rowIndex="6" />
+                              <Label text="Harzardous information" GridPane.rowIndex="7" />
+                              <Label text="Product type" GridPane.rowIndex="8" />
+                              <TextField fx:id="pTypeField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <tooltip>
+                                    <Tooltip text="Enter the products type." />
+                                 </tooltip>
+                              </TextField>
+                               <TextField fx:id="pidField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the product id here." />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="categoryField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the products category." />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="brandnameField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="Enter the brandname." />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="netweightField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <tooltip>
+                                    <Tooltip text="Enter the products net weight (numbers only)" />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="grossweightField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <tooltip>
+                                    <Tooltip text="Enter the products gross weight (numbers only)" />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="dimensionsField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <tooltip>
+                                    <Tooltip text="Enter the products dimensions (L x H x W)" />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="smarksField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <tooltip>
+                                    <Tooltip text="Enter security remarks." />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="hazardinfoField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <tooltip>
+                                    <Tooltip text="Enter hazardous remarks." />
+                                 </tooltip>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Manufacturer">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="147.0" prefWidth="501.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="144.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="249.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Manufacturer name" />
+                              <Label text="Manufacturer adress" GridPane.rowIndex="1" />
+                              <Label text="Manufacturer city" GridPane.rowIndex="2" />
+                              <Label text="Manufacturer country" GridPane.rowIndex="3" />
+                              <TextField fx:id="manufacnameField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the manufactures name." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="manufaccityField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="Enter the manufactures city." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="manufacccountryField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <tooltip>
+                                    <Tooltip text="Enter the manufactures country." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="manufacadressField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the manufactures adress." />
+                                 </tooltip></TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Recycling">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="183.333333" prefWidth="500.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="143.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="241.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Resources" />
+                              <Label text="Quantities" GridPane.rowIndex="1" />
+                              <Label text="Quantities per part" GridPane.rowIndex="2" />
+                              <Label text="Renewable resources" GridPane.rowIndex="3" />
+                              <Label text="Disassembly instructions" GridPane.rowIndex="4" />
+                              <TextField fx:id="materiallistField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the containing materials." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="quantitieslistField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the materials weight (numbers only)." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="portbnperpartField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="In case of disassembly, enter the materials per part." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="disasinstructionsField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <tooltip>
+                                    <Tooltip text="In case of disassembly, enter the disassembly instructions/remarks." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="renewablelistField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <tooltip>
+                                    <Tooltip text="Enter the containing renewable resources." />
+                                 </tooltip></TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Energy">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="146.666666666666" prefWidth="500.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Manufacturing energy source" />
+                              <Label text="Net energy usage during manufacturing" GridPane.rowIndex="1" />
+                              <Label text="Net energy usage during utilization" GridPane.rowIndex="2" />
+                              <Label text="Recycling recommandation" GridPane.rowIndex="3" />
+                              <TextField fx:id="energysourceField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the energy source used during manufacturing." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="netenergyusedField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Enter the net energy usage during manufacturing." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="netenergyconsumedField" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="Enter the expected energy usage during customers utilization." />
+                                 </tooltip></TextField>
+                              <TextField fx:id="recommandationField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <tooltip>
+                                    <Tooltip text="Empty Tooltip" />
+                                 </tooltip></TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="116.0" text="Speichern" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="400.0" />
+      <Button layoutX="134.0" layoutY="449.0" mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="121.0" text="Reset" AnchorPane.topAnchor="400.0" />
+   </children>
+</AnchorPane>

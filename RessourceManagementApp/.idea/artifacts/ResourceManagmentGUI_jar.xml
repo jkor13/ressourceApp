@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ResourceManagmentGUI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ResourceManagmentGUI_jar</output-path>
+    <root id="archive" name="ResourceManagmentGUI.jar">
+      <element id="module-output" name="ResourceManagmentGUI" />
+      <element id="library" level="application" name="mysql-connector-java-5.0" />
+      <element id="dir-copy" path="$USER_HOME$/Desktop/mysql-connector-java-5.0.8" />
+    </root>
+  </artifact>
+</component>
