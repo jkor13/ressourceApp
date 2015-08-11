@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
+
 <GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Main">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -12,7 +16,7 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <BorderPane id="mainBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane id="mainBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="707.0">
          <!-- CSS File -->
           <stylesheets>
               <URL value="@../Resources/style.css" />
@@ -20,20 +24,64 @@
          <left>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="idField" layoutX="28.0" layoutY="62.0" prefHeight="25.0" prefWidth="125.0" text="Product ID" AnchorPane.leftAnchor="37.5" />
-                  <TextField fx:id="productnameField" layoutX="28.0" layoutY="108.0" prefWidth="125.0" text="Product Name" AnchorPane.leftAnchor="37.5" />
-                  <HBox layoutX="15.0" layoutY="222.0" spacing="5.0" AnchorPane.leftAnchor="10.0">
+                  <TextField fx:id="idField" layoutX="44.0" layoutY="99.0" prefHeight="25.0" prefWidth="125.0" text="Product ID" AnchorPane.leftAnchor="44.0" />
+                  <TextField fx:id="productnameField" layoutX="44.0" layoutY="145.0" prefWidth="125.0" text="Product Name" AnchorPane.leftAnchor="44.0" />
+                  <VBox layoutX="11.0" layoutY="223.0" prefHeight="83.0" prefWidth="178.0">
                      <children>
-                        <Button layoutX="15.0" layoutY="222.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
-                        <Button layoutX="108.0" layoutY="222.0" mnemonicParsing="false" onAction="#search" opacity="0.92" text="Search" />
+                        <HBox layoutX="11.0" layoutY="223.0" spacing="5.0" AnchorPane.leftAnchor="11.0">
+                           <children>
+                              <Button layoutX="15.0" layoutY="222.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+                              <Button layoutX="108.0" layoutY="222.0" mnemonicParsing="false" onAction="#search" opacity="0.92" text="Search" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#openAdvancedSearch" prefHeight="34.0" prefWidth="178.0" text="Advanced Search">
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                        </Button>
                      </children>
-                  </HBox>
+                  </VBox>
                   <Label fx:id="statusLabel" layoutX="26.0" layoutY="20.0" prefHeight="29.0" prefWidth="127.0" />
                </children>
             </AnchorPane>
          </left>
+         <bottom>
+            <HBox>
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="40.0" prefWidth="265.0" text="TU Clausthal - Cyberphysics Project Group">
+                     <HBox.margin>
+                        <Insets left="221.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </bottom>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#closeWindow" text="Close Application" />
+                    </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Datenbank">
+                  <items>
+                      <MenuItem mnemonicParsing="false" onAction="#openList" text="Liste" />
+                      <MenuItem mnemonicParsing="false" onAction="#openInsertData" text="Neuer Eintrag" />
+                        <MenuItem mnemonicParsing="false" onAction="#openUpdate" text="Eintrag bearbeiten(todo)" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Eintrag löschen(todo)" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="RFID">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Scan" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
          <center>
-            <GridPane maxHeight="246.0" maxWidth="205.0" minHeight="100.0" minWidth="100.0" prefHeight="246.0" prefWidth="205.0" style="-fx-background-color: 363636;" BorderPane.alignment="TOP_LEFT">
+            <GridPane maxHeight="252.0" maxWidth="367.0" minHeight="100.0" minWidth="100.0" prefHeight="252.0" prefWidth="196.0" style="-fx-background-color: 363636;" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -71,41 +119,6 @@
                </BorderPane.margin>
             </GridPane>
          </center>
-         <bottom>
-            <HBox>
-               <children>
-                  <Label contentDisplay="CENTER" prefHeight="40.0" prefWidth="596.0" text="TU Clausthal - Cyberphysics Project Group">
-                     <HBox.margin>
-                        <Insets left="150.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-         </bottom>
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#closeWindow" text="Close Application" />
-                    </items>
-                  </Menu>
-                <Menu mnemonicParsing="false" text="Datenbank">
-                  <items>
-                      <MenuItem mnemonicParsing="false" onAction="#openList" text="Liste" />
-                      <MenuItem mnemonicParsing="false" onAction="#openInsertData" text="Neuer Eintrag" />
-                        <MenuItem mnemonicParsing="false" onAction="#openUpdate" text="Eintrag bearbeiten(todo)" />
-                        <MenuItem disable="true" mnemonicParsing="false" text="Eintrag löschen(todo)" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="RFID">
-                  <items>
-                        <MenuItem mnemonicParsing="false" text="Scan" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
       </BorderPane>
    </children>
 </GridPane>

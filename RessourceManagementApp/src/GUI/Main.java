@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,9 +17,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 public class Main extends Application {
     private ProductRepository repo;
     private Stage window;
+    private Scene window2;
     @FXML
     private Label pid;
     @FXML
@@ -35,17 +41,24 @@ public class Main extends Application {
     @FXML
     private Label statusLabel;
 
+    // Variables for advanced search
+    @FXML
+    private TextField prod_cat_adv_search;
+    @FXML
+    private TextField prod_type_adv_search;
+    @FXML
+    private TextField manufacturer_adv_search;
+    @FXML
+    private TextField containing_res_adv_search;
+
     private double mouseX;
     private double mouseY;
-
-
 
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View/mother.fxml"));
-
 
         window = primaryStage;
         window.setTitle("Product Database");
@@ -78,8 +91,30 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
         //new Main().connectDatabase();
+    }
+    @FXML
+    private void openAdvancedSearch(){
+        try{
+            replaceSceneContext("advancedSearch.fxml");
+        } catch (Exception e) {
+            System.out.println("Cannot change stage");
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private Parent replaceSceneContext(String fxml) throws Exception{
+        Parent page = FXMLLoader.load(Main.class.getResource("View/advancedSearch.fxml"));
+        Scene scene = window.getScene();
 
-
+        if(scene == null){
+            scene = new Scene(page, 700, 450);
+            scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
+        window.setScene(scene);
+        }else{
+            window.getScene().setRoot(page);
+        }
+        window.sizeToScene();
+        return page;
     }
 
     @FXML
@@ -110,6 +145,10 @@ public class Main extends Application {
         window.setScene(new Scene(root));
         window.initStyle(StageStyle.UNDECORATED);
         window.show();
+    }
+
+    @FXML
+    private void openAdvancedSearchResults() throws Exception{
 
     }
 
@@ -147,10 +186,8 @@ public class Main extends Application {
         this.pcategory.setText(results[2]);
         this.ptype.setText(results[3]);
         this.manufac.setText(results[4]);
-
-
-
     }
+
     @FXML
     private void reset(){
         idField.setText("");
@@ -169,6 +206,38 @@ public class Main extends Application {
     @FXML
     private void closeWindow() {
     Platform.exit();
+    }
+
+    @FXML
+    private void advSearch(){
+        ProductRepository newRepo = new ProductRepository();
+        if(newRepo.getConnection() == true) statusLabel.setText("Executed Query");
+        else statusLabel.setText("Couldn't Execut Query");
+
+        String prodCat = prod_cat_adv_search.getText();
+        String prodTyp = prod_type_adv_search.getText();
+        String manufacturer = manufacturer_adv_search.getText();
+        String containingResources = containing_res_adv_search.getText();
+        ArrayList<String> result = newRepo.search(prodCat, prodTyp, manufacturer, containingResources);
+
+        changeScene("table_advancedSearch.fxml");
+    }
+
+    @FXML
+    private void resetAdvSearch(){
+        prod_cat_adv_search.setText("");
+        prod_type_adv_search.setText("");
+        manufacturer_adv_search.setText("");
+        containing_res_adv_search.setText("");
+    }
+
+    private void changeScene(String context){
+        try{
+            replaceSceneContext(context);
+        } catch (Exception e) {
+            System.out.println("Cannot change stage");
+            e.printStackTrace();
+        }
     }
 }
 

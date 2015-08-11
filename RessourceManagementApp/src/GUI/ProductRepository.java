@@ -1,9 +1,6 @@
 package GUI;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -62,7 +59,8 @@ public class ProductRepository {
         String[] results = new String[5];
         String[] temp = new String[5];
         try {
-            String query = "SELECT * FROM `products_info` WHERE p_name LIKE '%" + pname + "%' or p_id LIKE '%" + pid +"%';";
+            String query = "SELECT * FROM `products_info` WHERE p_name LIKE '%" + pname + "%' or p_id LIKE '%" +
+                    pid +"%';";
             System.out.println("The query: "  + query);
             statement = conn.createStatement();
             result = statement.executeQuery(query);
@@ -82,8 +80,50 @@ public class ProductRepository {
         System.out.println(results);
         return results;
     }
+    public ArrayList<String> search(String prodCat, String prodTyp, String manufacturer, String containingResources ) {
+        ArrayList<String> temp = new ArrayList<>();
+        ArrayList<String> results = new ArrayList<>();
+        try {
+            if (prodCat != "" || prodTyp != "" || manufacturer != "" || containingResources != "") {
+                String query = "SELECT * FROM `products_info` WHERE p_category LIKE '%" + prodCat + "%' " +
+                        "or p_type LIKE '%" + prodTyp + "%' or mfac_name LIKE '%" + manufacturer + "%'" +
+                        "or resdecl_materiallist LIKE '%" + containingResources + "%';";
+                System.out.println("The query: " + query);
+                statement = conn.createStatement();
+                result = statement.executeQuery(query);
+                while (result.next()) {
+                    temp.set(0, result.getString("p_id"));
+                    temp.set(1, result.getString("p_name"));
+                    temp.set(2, result.getString("p_category"));
+                    temp.set(3, result.getString("p_type"));
+                    temp.set(4, result.getString("p_netweight"));
+                    temp.set(5, result.getString("p_grossweight"));
+                    temp.set(6, result.getString("p_dimensions"));
+                    temp.set(7, result.getString("p_smarks_remarks"));
+                    temp.set(8, result.getString("p_smarks_hazardinfo"));
+                    temp.set(9, result.getString("mfac_name"));
+                    temp.set(10, result.getString("mfac_adresse"));
+                    temp.set(11, result.getString("mfac_city"));
+                    temp.set(12, result.getString("mfac_country"));
+                    temp.set(13, result.getString("resdecl_materiallist"));
+                    temp.set(14, result.getString("resdecl_quantitieslist"));
+                    temp.set(15, result.getString("resdecl_portionsperpartlist"));
+                    temp.set(16, result.getString("resdecl_renewablelist"));
+                    temp.set(17, result.getString("mfac_energysource"));
+                    temp.set(18, result.getString("mfac_netenergyconsumed"));
+                    temp.set(19, result.getString("recycling_recommendation"));
+                    temp.set(20, result.getString("usage_netenergyconsumed"));
+                    temp.set(21, result.getString("disassemblyinstructions"));
+                    results = temp;
+                }
+            }
 
-    /**
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }return results;
+    }
+
+        /**
      *
      * @return ArrayList of Products that contain all values
      */
