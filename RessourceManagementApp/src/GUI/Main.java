@@ -23,7 +23,8 @@ import java.util.ArrayList;
 public class Main extends Application {
     private ProductRepository repo;
     private Stage window;
-    private Scene window2;
+
+    private String advancedSearchQuery;
     @FXML
     private Label pid;
     @FXML
@@ -203,16 +204,37 @@ public class Main extends Application {
     Platform.exit();
     }
 
+    /**
+     * Martin - Changed some code
+     * added buildAdvancedSearchQuery() function
+     */
     @FXML
     private void advSearch(){
-        ProductRepository newRepo = new ProductRepository();
+        try {
+            repo = new ProductRepository();
+            buildAdvancedSearchQuery();
+            System.out.println("Folgende Query versuchst du, du Gurke:" + advancedSearchQuery);
+            String[] result = repo.executeQuery(advancedSearchQuery);
+        }catch(Exception e){
+            System.out.println("Error with getting advanced search results");
+            e.printStackTrace();
+        }
+    }
 
-        String prodCat = prod_cat_adv_search.getText();
-        String prodTyp = prod_type_adv_search.getText();
-        String manufacturer = manufacturer_adv_search.getText();
-        String containingResources = containing_res_adv_search.getText();
-        String[] result = newRepo.search(prodCat, prodTyp, manufacturer, containingResources);
-
+    /**
+     * Method used to check whether Fields are empty and not and thus
+     * builds the query
+     */
+    private void buildAdvancedSearchQuery(){
+        advancedSearchQuery = "SELECT * FROM `products_info` ";
+        if(!prod_cat_adv_search.getText().isEmpty())
+            advancedSearchQuery += "where p_category like '" + prod_cat_adv_search.getText() + "' ";
+        if(!prod_type_adv_search.getText().isEmpty())
+            advancedSearchQuery += "and p_type like '%%" + prod_cat_adv_search.getText() + "' ";
+        if(!manufacturer_adv_search.getText().isEmpty())
+            advancedSearchQuery +="and mfac_name LIKE '%%" + manufacturer_adv_search.getText() +"' ";
+        if(!containing_res_adv_search.getText().isEmpty())
+            advancedSearchQuery +="and resdecl_materiallist like '" + containing_res_adv_search.getText() + "'";
 
     }
 

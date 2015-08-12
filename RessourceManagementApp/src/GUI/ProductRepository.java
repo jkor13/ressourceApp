@@ -80,6 +80,49 @@ public class ProductRepository {
         System.out.println(results);
         return results;
     }
+
+    /**
+     * Martin was here. Method there to execute a custom query
+     * @param q  custom Query
+     * @return
+     * @throws SQLException
+     */
+    public String[] executeQuery(String q) throws SQLException {
+        String[] temp = new String[21];
+        String[] results = new String[21];
+        String query = q;
+        statement = conn.createStatement();
+        result = statement.executeQuery(query);
+        while (result.next()) {
+            temp[0] = result.getString("p_id");
+            temp[1] = result.getString("p_name");
+            temp[2] = result.getString("p_category");
+            temp[3] = result.getString("p_type");
+            temp[4] = result.getString("p_netweight");
+            temp[5] = result.getString("p_grossweight");
+            temp[6] = result.getString("p_dimensions");
+            temp[7] = result.getString("smarks_remarks");
+            temp[8] = result.getString("smarks_hazardinfo");
+            temp[9] = result.getString("mfac_name");
+            temp[10] = result.getString("mfac_adresse");
+            temp[11] = result.getString("mfac_city");
+            temp[12] = result.getString("mfac_country");
+            temp[13] = result.getString("resdecl_materiallist");
+            temp[14] = result.getString("resdecl_quantitieslist");
+            temp[15] = result.getString("resdecl_portionperpartlist");
+            temp[16] = result.getString("mfac_energysource");
+            temp[17] = result.getString("mfac_netenergyconsumed");
+            temp[18] = result.getString("recycling_recommendation");
+            temp[19] = result.getString("usage_netenergyconsumed");
+            temp[20] = result.getString("disassemblyinstructions");
+            results = temp;
+            System.out.println(results);
+        }
+
+        return results;
+
+        }
+
     public String[] search(String prodCat, String prodTyp, String manufacturer, String containingResources ) {
         String[] temp = new String[21];
         String[] results = new String[21];
