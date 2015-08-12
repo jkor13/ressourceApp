@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Main">
+<AnchorPane style="-fx-background-color: #1d1d1d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Main">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" style="-fx-background-color: 1d1d1d;">
          <stylesheets>
              <URL value="@../Resources/style.css" />
          </stylesheets>
@@ -51,22 +50,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product category">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product category">
                            <GridPane.margin>
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product type" GridPane.rowIndex="1">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product type" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Manufacturer" GridPane.rowIndex="2">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manufacturer" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Containing resources" GridPane.rowIndex="3">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Containing resources" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="15.0" />
                            </GridPane.margin>
