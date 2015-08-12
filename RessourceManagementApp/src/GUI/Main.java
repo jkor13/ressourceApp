@@ -203,16 +203,14 @@ public class Main extends Application {
     @FXML
     private void advSearch(){
         ProductRepository newRepo = new ProductRepository();
-        if(newRepo.getConnection() == true) statusLabel.setText("Executed Query");
-        else statusLabel.setText("Couldn't Execut Query");
 
         String prodCat = prod_cat_adv_search.getText();
         String prodTyp = prod_type_adv_search.getText();
         String manufacturer = manufacturer_adv_search.getText();
         String containingResources = containing_res_adv_search.getText();
-        ArrayList<String> result = newRepo.search(prodCat, prodTyp, manufacturer, containingResources);
+        String[] result = newRepo.search(prodCat, prodTyp, manufacturer, containingResources);
 
-        changeScene("table_advancedSearch.fxml");
+
     }
 
     @FXML

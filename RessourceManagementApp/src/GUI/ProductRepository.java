@@ -80,9 +80,9 @@ public class ProductRepository {
         System.out.println(results);
         return results;
     }
-    public ArrayList<String> search(String prodCat, String prodTyp, String manufacturer, String containingResources ) {
-        ArrayList<String> temp = new ArrayList<>();
-        ArrayList<String> results = new ArrayList<>();
+    public String[] search(String prodCat, String prodTyp, String manufacturer, String containingResources ) {
+        String[] temp = new String[21];
+        String[] results = new String[21];
         try {
             if (prodCat != "" || prodTyp != "" || manufacturer != "" || containingResources != "") {
                 String query = "SELECT * FROM `products_info` WHERE p_category LIKE '%" + prodCat + "%' " +
@@ -92,32 +92,31 @@ public class ProductRepository {
                 statement = conn.createStatement();
                 result = statement.executeQuery(query);
                 while (result.next()) {
-                    temp.set(0, result.getString("p_id"));
-                    temp.set(1, result.getString("p_name"));
-                    temp.set(2, result.getString("p_category"));
-                    temp.set(3, result.getString("p_type"));
-                    temp.set(4, result.getString("p_netweight"));
-                    temp.set(5, result.getString("p_grossweight"));
-                    temp.set(6, result.getString("p_dimensions"));
-                    temp.set(7, result.getString("p_smarks_remarks"));
-                    temp.set(8, result.getString("p_smarks_hazardinfo"));
-                    temp.set(9, result.getString("mfac_name"));
-                    temp.set(10, result.getString("mfac_adresse"));
-                    temp.set(11, result.getString("mfac_city"));
-                    temp.set(12, result.getString("mfac_country"));
-                    temp.set(13, result.getString("resdecl_materiallist"));
-                    temp.set(14, result.getString("resdecl_quantitieslist"));
-                    temp.set(15, result.getString("resdecl_portionsperpartlist"));
-                    temp.set(16, result.getString("resdecl_renewablelist"));
-                    temp.set(17, result.getString("mfac_energysource"));
-                    temp.set(18, result.getString("mfac_netenergyconsumed"));
-                    temp.set(19, result.getString("recycling_recommendation"));
-                    temp.set(20, result.getString("usage_netenergyconsumed"));
-                    temp.set(21, result.getString("disassemblyinstructions"));
+                    temp[0] = result.getString("p_id");
+                    temp[1] = result.getString("p_name");
+                    temp[2] = result.getString("p_category");
+                    temp[3] = result.getString("p_type");
+                    temp[4] = result.getString("p_netweight");
+                    temp[5] = result.getString("p_grossweight");
+                    temp[6] = result.getString("p_dimensions");
+                    temp[7] = result.getString("smarks_remarks");
+                    temp[8] = result.getString("smarks_hazardinfo");
+                    temp[9] = result.getString("mfac_name");
+                    temp[10] = result.getString("mfac_adresse");
+                    temp[11] = result.getString("mfac_city");
+                    temp[12] = result.getString("mfac_country");
+                    temp[13] = result.getString("resdecl_materiallist");
+                    temp[14] = result.getString("resdecl_quantitieslist");
+                    temp[15] = result.getString("resdecl_portionperpartlist");
+                    temp[16] = result.getString("mfac_energysource");
+                    temp[17] = result.getString("mfac_netenergyconsumed");
+                    temp[18] = result.getString("recycling_recommendation");
+                    temp[19] = result.getString("usage_netenergyconsumed");
+                    temp[20] = result.getString("disassemblyinstructions");
                     results = temp;
+                    System.out.println(results);
                 }
             }
-
         } catch (SQLException e1) {
             e1.printStackTrace();
         }return results;
