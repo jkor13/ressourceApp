@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.URL?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdvSearch">
+    <stylesheets>
+        <URL value="@../Resources/style.css" />
+    </stylesheets>
+    <children>
+      <TableView fx:id="tableView">
+        <columns>
+            <TableColumn fx:id="category" prefWidth="75.0" text="Category" />
+            <TableColumn fx:id="brandname" prefWidth="75.0" text="Brandname" />
+            <TableColumn fx:id="netweight" prefWidth="75.0" text="netweight (g)" />
+            <TableColumn fx:id="grossweight" prefWidth="75.0" text="grossweight (g)" />
+            <TableColumn fx:id="dimensions" prefWidth="75.0" text="dimensions (mm)" />
+            <TableColumn fx:id="smarks" prefWidth="75.0" text="smarks" />
+            <TableColumn fx:id="hazardinfo" prefWidth="75.0" text="smarks hazardinfo" />
+            <TableColumn fx:id="name" prefWidth="75.0" text="manufacturer name" />
+            <TableColumn fx:id="adress" prefWidth="75.0" text="manufacturer adress" />
+            <TableColumn fx:id="city" prefWidth="75.0" text="manufacturer city" />
+            <TableColumn fx:id="country" prefWidth="75.0" text="manufacturer country" />
+            <TableColumn fx:id="materiallist" prefWidth="75.0" text="resdecl materiallist" />
+            <TableColumn fx:id="quantitieslist" prefWidth="75.0" text="resdecl quantitieslist (g)" />
+            <TableColumn fx:id="pnperpart" prefWidth="75.0" text="resdecl port n perpart" />
+            <TableColumn fx:id="renewablelist" prefWidth="75.0" text="resdecl renewablelist" />
+            <TableColumn fx:id="energysource" prefWidth="75.0" text="manufacturer energysource" />
+            <TableColumn fx:id="netenergyused" prefWidth="75.0" text="manufacturer netenergy used" />
+            <TableColumn fx:id="netenergyconsumed" prefWidth="75.0" text="usage netenergyconsumed" />
+            <TableColumn fx:id="recommandation" prefWidth="75.0" text="recycling recommandation" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

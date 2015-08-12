@@ -86,7 +86,7 @@
                               <Insets left="210.0" right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#advSearch" prefHeight="34.0" prefWidth="90.0" text="Search" />
+                        <Button mnemonicParsing="false" onAction="#openAdvancedSearchResults" prefHeight="34.0" prefWidth="90.0" text="Search" />
                      </children>
                   </HBox>
                </children>

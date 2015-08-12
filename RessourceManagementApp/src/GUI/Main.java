@@ -15,6 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main extends Application {
     private ProductRepository repo;
     private Stage window;
@@ -137,9 +140,32 @@ public class Main extends Application {
         window.show();
     }
 
+    /**
+     * Rico hat gespielt :-)
+     * @throws Exception
+     */
     @FXML
     private void openAdvancedSearchResults() throws Exception {
+        repo = new ProductRepository();
+        Stage window = new Stage();
+        FXMLLoader loader = new FXMLLoader();
 
+        buildAdvancedSearchQuery();
+        System.out.println("Query:" + advancedSearchQuery);
+        String[] result = repo.executeQuery(advancedSearchQuery);
+
+       //TODO: Übergeben (ArrayList) this.productCollection;
+
+        loader.setLocation(Main.class.getResource("View/advsearch.fxml"));
+        insertDataController controller = loader.getController();
+
+        if (controller == null)
+            System.out.println("Cant  load controller");
+        controller.setRepo(repo);
+        Parent root = (AnchorPane) loader.load();
+        window.setTitle("AdvSearch");
+        window.setScene(new Scene(root));
+        window.show();
     }
 
     @FXML
@@ -157,6 +183,7 @@ public class Main extends Application {
         window.setScene(new Scene(root));
         window.show();
     }
+
 
     @FXML
     private void search() {

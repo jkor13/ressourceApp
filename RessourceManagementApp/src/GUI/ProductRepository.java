@@ -13,6 +13,7 @@ public class ProductRepository {
     private Statement statement = null;
     private Connection conn;
     private boolean connection;
+    ArrayList<Product> productCollection;
     static final String host = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql483664";
     Product p;
 
