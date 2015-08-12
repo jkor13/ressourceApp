@@ -152,10 +152,11 @@ public class Main extends Application {
 
         buildAdvancedSearchQuery();
         System.out.println("Query:" + advancedSearchQuery);
-        String[] result = repo.executeQuery(advancedSearchQuery);
+        ArrayList<Product> result = repo.executeQuery(advancedSearchQuery);
 
        //TODO: Übergeben (ArrayList) this.productCollection;
-
+        // MARTIN WAR HIER, PROBLEM GELÖST?
+        AdvSearch.setResults(result);
         loader.setLocation(Main.class.getResource("View/advsearch.fxml"));
         insertDataController controller = loader.getController();
 
@@ -234,7 +235,8 @@ public class Main extends Application {
             repo = new ProductRepository();
             buildAdvancedSearchQuery();
             System.out.println("Query:" + advancedSearchQuery);
-            String[] result = repo.executeQuery(advancedSearchQuery);
+            ArrayList<Product> result = repo.executeQuery(advancedSearchQuery);
+            AdvSearch.setResults(result);
         } catch (Exception e) {
             System.out.println("Error with getting advanced search results");
             e.printStackTrace();

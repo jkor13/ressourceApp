@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -60,7 +61,11 @@ public class AdvSearch {
     @FXML
     private TableColumn<GUI.Product, String> recommandation;
 
+    private static ArrayList<Product> results;
 
+    public static void setResults(ArrayList<Product> collection){
+        results = collection;
+    }
 
     @FXML
     private void initialize() {
@@ -89,10 +94,9 @@ public class AdvSearch {
 
 
         //Todo: Übergabe (results array)
-        //ArrayList<Product> productCollection = repo.searchCollection();
 
         // THIS CONVERTS THE COLLECTION INTO AN OBSERVABLE COLLECTION
-        data.addAll(productCollection.stream().collect(Collectors.toList()));
+        data.addAll(results.stream().collect(Collectors.toList()));
 
         tableView.setItems(data);
 
