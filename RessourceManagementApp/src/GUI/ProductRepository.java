@@ -17,29 +17,29 @@ public class ProductRepository {
     Product p;
 
 
-    public ProductRepository(){
+    public ProductRepository() {
         connectDatabase();
     }
-    private void connectDatabase(){
+
+    private void connectDatabase() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(host, "sql483664", "rW8*aG4!");
             connection = true;
-        } catch(Exception e){
+        } catch (Exception e) {
             connection = false;
             System.out.println("Error with connectDatabase()");
             e.printStackTrace();
         }
     }
 
-    public boolean commit(String query){
+    public boolean commit(String query) {
         try {
-            System.out.println("The query: "  + query);
+            System.out.println("The query: " + query);
             statement = conn.createStatement();
-            if(statement.executeUpdate(query) == 0) {
+            if (statement.executeUpdate(query) == 0) {
                 return false;
-            }
-             else {
+            } else {
                 System.out.println("Executed insert query: " + query);
                 return true;
             }
@@ -51,20 +51,21 @@ public class ProductRepository {
         return false;
     }
 
-    public boolean getConnection(){
+    public boolean getConnection() {
         return connection;
     }
-    public String[] search(String pid, String pname){
+
+    public String[] search(String pid, String pname) {
 
         String[] results = new String[5];
         String[] temp = new String[5];
         try {
             String query = "SELECT * FROM `products_info` WHERE p_name LIKE '%" + pname + "%' or p_id LIKE '%" +
-                    pid +"%';";
-            System.out.println("The query: "  + query);
+                    pid + "%';";
+            System.out.println("The query: " + query);
             statement = conn.createStatement();
             result = statement.executeQuery(query);
-            while(result.next()){
+            while (result.next()) {
                 //Retrieve by column name
                 temp[0] = result.getString("p_id");
                 temp[1] = result.getString("p_name");
@@ -83,7 +84,8 @@ public class ProductRepository {
 
     /**
      * Martin was here. Method there to execute a custom query
-     * @param q  custom Query
+     *
+     * @param q custom Query
      * @return
      * @throws SQLException
      */
@@ -118,65 +120,20 @@ public class ProductRepository {
             results = temp;
             System.out.println(results);
         }
-
         return results;
-
-        }
-
-    public String[] search(String prodCat, String prodTyp, String manufacturer, String containingResources ) {
-        String[] temp = new String[21];
-        String[] results = new String[21];
-        try {
-            if (prodCat != "" || prodTyp != "" || manufacturer != "" || containingResources != "") {
-                String query = "SELECT * FROM `products_info` WHERE p_category LIKE '%" + prodCat + "%' " +
-                        "or p_type LIKE '%" + prodTyp + "%' or mfac_name LIKE '%" + manufacturer + "%'" +
-                        "or resdecl_materiallist LIKE '%" + containingResources + "%';";
-                System.out.println("The query: " + query);
-                statement = conn.createStatement();
-                result = statement.executeQuery(query);
-                while (result.next()) {
-                    temp[0] = result.getString("p_id");
-                    temp[1] = result.getString("p_name");
-                    temp[2] = result.getString("p_category");
-                    temp[3] = result.getString("p_type");
-                    temp[4] = result.getString("p_netweight");
-                    temp[5] = result.getString("p_grossweight");
-                    temp[6] = result.getString("p_dimensions");
-                    temp[7] = result.getString("smarks_remarks");
-                    temp[8] = result.getString("smarks_hazardinfo");
-                    temp[9] = result.getString("mfac_name");
-                    temp[10] = result.getString("mfac_adresse");
-                    temp[11] = result.getString("mfac_city");
-                    temp[12] = result.getString("mfac_country");
-                    temp[13] = result.getString("resdecl_materiallist");
-                    temp[14] = result.getString("resdecl_quantitieslist");
-                    temp[15] = result.getString("resdecl_portionperpartlist");
-                    temp[16] = result.getString("mfac_energysource");
-                    temp[17] = result.getString("mfac_netenergyconsumed");
-                    temp[18] = result.getString("recycling_recommendation");
-                    temp[19] = result.getString("usage_netenergyconsumed");
-                    temp[20] = result.getString("disassemblyinstructions");
-                    results = temp;
-                    System.out.println(results);
-                }
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }return results;
     }
 
-        /**
-     *
+    /**
      * @return ArrayList of Products that contain all values
      */
-    public ArrayList<Product> searchCollection(){
+    public ArrayList<Product> searchCollection() {
         ArrayList<Product> results = new ArrayList<Product>();
         try {
             String query = "SELECT * FROM products_info;";
             statement = conn.createStatement();
             result = statement.executeQuery(query);
             int index = 0;
-            while(result.next()){
+            while (result.next()) {
                 results.add(index, new Product());
                 results.get(index).setaID(result.getString("p_id"));
                 results.get(index).setaName(result.getString("p_name"));
