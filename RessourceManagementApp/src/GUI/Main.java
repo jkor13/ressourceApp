@@ -76,6 +76,9 @@ public class Main extends Application {
             }
         });
 
+        /**
+         * This method allows the user to drag the Window around as much as he wishes via mouseclick
+         */
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
