@@ -21,6 +21,7 @@ import java.util.Arrays;
 public class Main extends Application {
     private ProductRepository repo;
     private Stage window;
+    private ArrayList<Product> productSet;
 
     private String advancedSearchQuery;
     @FXML

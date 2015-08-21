@@ -9,7 +9,7 @@ package GUI;
  */
 public class Product {
 
-    private String aID;
+    private String id;
     private String aName;
     private String aTyp;
     private String category;
@@ -35,11 +35,11 @@ public class Product {
     private String recommandation;
 
     public String getaID() {
-        return aID;
+        return id;
     }
 
     public void setaID(String aID) {
-        this.aID = aID;
+        this.id = aID;
     }
 
     public String getaName() {

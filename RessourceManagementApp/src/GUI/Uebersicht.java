@@ -43,8 +43,8 @@ public class Uebersicht {
         data  = FXCollections.observableArrayList();
         data.clear();
         p = repo.searchCollection();
-        ID.setCellValueFactory(new PropertyValueFactory<>("aID"));
-        NAME.setCellValueFactory(new PropertyValueFactory<>("aName"));
+        ID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        NAME.setCellValueFactory(new PropertyValueFactory<>("name"));
         TYP.setCellValueFactory(new PropertyValueFactory<>("category"));
         setTableView();
         System.out.println("after setTableView()");
