@@ -75,4 +75,39 @@ public class extendedDataController {
     @FXML
     private Label pTypeLabel;
 
+    private static Product product;
+
+    static void setProduct(Product p){
+        product = p;
+    }
+    private void setItems(){
+        energysourceLabel.setText(product.getEnergysource());
+        pTypeLabel.setText(product.getaTyp());
+        securityremarksLabel.setText(product.getSmarks());
+        grossweightLabel.setText(String.valueOf(product.getGrossweight()));
+        netenergyconsumedLabel.setText(product.getNetenergyconsumed());
+        netenergyUsedLabel.setText(product.getNetenergyused());
+        pidLabel.setText(product.getaID());
+        brandnameLabel.setText(product.getaName());
+        netweightLabel.setText(String.valueOf(product.getNetweight()));
+        recommandationLabel.setText(product.getRecommandation());
+        categoryLabel.setText(product.getCategory());
+        hazardLabel.setText(product.getHazardinfo());
+        quantitiesLabel.setText(product.getQuantitieslist());
+        quantitiesPerParttLabel.setText(product.getPnperpart());
+        manufacNameLabel.setText(product.getMfac_name());
+        manufacCountryLabel.setText(product.getMfac_adress());
+        manufacAdressLabel.setText(product.getMfac_adress());
+        dimensionsLabel.setText(product.getDimensions());
+        manufacCityLabel.setText(product.getMfac_adress());
+        disassemblyInstrLabel.setText("N/A");
+        ressourcesLabel.setText(product.getMateriallist());
+        renewResourcesLabel.setText(product.getRenewablelist());
+
+    }
+
+    @FXML
+    private void initialize(){
+        setItems();
+    }
 }

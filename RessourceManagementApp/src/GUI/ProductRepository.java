@@ -13,12 +13,13 @@ public class ProductRepository {
     private Statement statement = null;
     private Connection conn;
     private boolean connection;
-    ArrayList<Product> productCollection;
+    ArrayList<Product> results;
     static final String host = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql483664";
     Product p;
 
 
     public ProductRepository() {
+        results = new ArrayList<Product>();
         connectDatabase();
     }
 
@@ -34,6 +35,12 @@ public class ProductRepository {
         }
     }
 
+    /**Method used to clean its own Collection
+     * Allows to use 1 Instance of that class per Object
+     */
+    public void clear(){
+        results.clear();
+    }
     public boolean commit(String query) {
         try {
             System.out.println("The query: " + query);
@@ -56,9 +63,7 @@ public class ProductRepository {
         return connection;
     }
 
-    public String[] search(String pid, String pname) {
-
-        String[] results = new String[5];
+    public ArrayList<Product> search(String pid, String pname) {
         String[] temp = new String[5];
         try {
             String query = "SELECT * FROM `products_info` WHERE p_name LIKE '%" + pname + "%' or p_id LIKE '%" +
@@ -66,14 +71,32 @@ public class ProductRepository {
             System.out.println("The query: " + query);
             statement = conn.createStatement();
             result = statement.executeQuery(query);
+            int index = 0;
             while (result.next()) {
-                //Retrieve by column name
-                temp[0] = result.getString("p_id");
-                temp[1] = result.getString("p_name");
-                temp[2] = result.getString("p_category");
-                temp[3] = result.getString("p_type");
-                temp[4] = result.getString("mfac_name");
-                results = temp;
+                results.add(index, new Product());
+                results.get(index).setaID(result.getString("p_id"));
+                results.get(index).setaName(result.getString("p_name"));
+                results.get(index).setaTyp(result.getString("p_type"));
+                results.get(index).setCategory(result.getString("p_category"));
+                results.get(index).setNetweight(Float.parseFloat(result.getString("p_netweight")));
+                results.get(index).setGrossweight(Float.parseFloat(result.getString("p_grossweight")));
+                results.get(index).setDimensions(result.getString("p_dimensions"));
+                results.get(index).setSmarks(result.getString("smarks_remarks"));
+                results.get(index).setHazardinfo(result.getString("smarks_hazardinfo"));
+                results.get(index).setMfac_name(result.getString("mfac_name"));
+                results.get(index).setAdress(result.getString("mfac_adresse"));
+                results.get(index).setCity(result.getString("mfac_city"));
+                results.get(index).setCity(result.getString("mfac_city"));
+                results.get(index).setCountry(result.getString("mfac_country"));
+                results.get(index).setMateriallist(result.getString("resdecl_materiallist"));
+                results.get(index).setQuantitieslist(result.getString("resdecl_quantitieslist"));
+                results.get(index).setPnperpart(result.getString("resdecl_portionperpartlist"));
+                results.get(index).setRenewablelist(result.getString("resdecl_renewablelist"));
+                results.get(index).setEnergysource(result.getString("mfac_energysource"));
+                results.get(index).setNetenergyconsumed(result.getString("usage_netenergyconsumed"));
+                results.get(index).setNetenergyconsumed(result.getString("mfac_netenergyconsumed"));
+                results.get(index).setRecommandation(result.getString("recycling_recommendation"));
+                index++;
             }
         } catch (Exception e) {
             System.out.println("ProductRepository: Error with executing the Query!");

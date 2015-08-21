@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -15,15 +16,22 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main extends Application {
     private ProductRepository repo;
     private Stage window;
-    private ArrayList<Product> productSet;
-
     private String advancedSearchQuery;
+    @FXML
+    private Button detailsButton;
+    private ArrayList<Product> results;
+    private int currentItem = 0;
+    @FXML
+    private Label itemsCount;
+    @FXML
+    private Label itemIndex;
     @FXML
     private Label pid;
     @FXML
@@ -51,6 +59,10 @@ public class Main extends Application {
     @FXML
     private TextField containing_res_adv_search;
 
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Button previousButton;
     private double mouseX;
     private double mouseY;
 
@@ -94,6 +106,11 @@ public class Main extends Application {
     }
 
     @FXML
+    private void initialize(){
+        repo = new ProductRepository();
+        System.out.println("LOL");
+    }
+    @FXML
     private void openAdvancedSearch() {
         try {
             replaceSceneContext();
@@ -128,6 +145,38 @@ public class Main extends Application {
 
     }
 
+    @FXML
+    private void previousItem(){
+        // Implementation for the 'Previous' button
+        if(currentItem >= 1) {
+            currentItem--;
+            setSearchResults();
+            manageControllButtons();
+            setCurrentItemIndex();
+        }
+    }
+
+    @FXML
+    private void nextItem(){
+        // Implementation for the 'Next' button
+        if(currentItem != results.size()) {
+            currentItem++;
+            setSearchResults();
+            manageControllButtons();
+            setCurrentItemIndex();
+        }
+    }
+    @FXML
+    private void extendedDetails() throws IOException {
+        extendedDataController.setProduct(results.get(currentItem));
+        Stage window = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("View/extendedData.fxml"));
+        Parent root = loader.load();
+        window.setTitle("Extended Details");
+        window.setScene(new Scene(root));
+        window.show();
+    }
     @FXML
     private void openList() throws Exception {
         repo = new ProductRepository();
@@ -191,20 +240,58 @@ public class Main extends Application {
     private void search() {
         //connect to DB
         // --- Extract the Values from the Textfield to build the Query
+        repo.clear();
+        results = new ArrayList<>();
         ProductRepository newRepo = new ProductRepository();
-        if (newRepo.getConnection() == true)
+        if (repo.getConnection() == true)
             statusLabel.setText("Executed Query");
         else
             statusLabel.setText("Couldn't Execut Query");
         String pid = idField.getText();
         String productname = productnameField.getText();
-        String[] results = newRepo.search(pid, productname);
-        this.pid.setText(results[0]);
-        this.pname.setText(results[1]);
-        this.pcategory.setText(results[2]);
-        this.ptype.setText(results[3]);
-        this.manufac.setText(results[4]);
+        currentItem = 0;
+        if (!(results = repo.search(pid, productname)).isEmpty()) {
+            itemIndex.setVisible(true);
+            setSearchResults();
+            setCurrentItemIndex();
+            setFoundItemsCount();
+            manageControllButtons();
+            detailsButton.setDisable(false);
+        }
+
     }
+
+    private void setCurrentItemIndex() {
+        itemIndex.setText(Integer.toString(currentItem+1));
+    }
+
+    /**
+     * Überprüft welcher der Next/Previous Buttons disabled/enabled werden muss
+     */
+    private void manageControllButtons(){
+        if(currentItem > 0)
+            previousButton.setDisable(false);
+        else
+            previousButton.setDisable(true);
+
+        if(currentItem+1 < results.size())
+            nextButton.setDisable(false);
+        else
+            nextButton.setDisable(true);
+    }
+
+    private void setFoundItemsCount(){
+        int foundItems = results.size();
+        itemsCount.setText(Integer.toString(foundItems));
+    }
+
+    private void setSearchResults(){
+            this.pid.setText(results.get(currentItem).getaID());
+        this.pname.setText(results.get(currentItem).getaName());
+            this.pcategory.setText(results.get(currentItem).getCategory());
+            this.ptype.setText(results.get(currentItem).getaTyp());
+            this.manufac.setText(results.get(currentItem).getMfac_name());
+        }
 
     @FXML
     private void reset() {
